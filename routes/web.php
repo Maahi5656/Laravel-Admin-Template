@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\FontPageController;
 
 use App\Models\Category;
 use App\Models\Brand;
-
+use App\Models\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +23,40 @@ use App\Models\Brand;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/about', [FontPageController::class, 'about']) ;
+
+Route::get('/shop', [FontPageController::class, 'shop']);
+
+Route::get('/cart', function(){
+   return view('cart');
+});
+
+Route::get('/checkout', function(){
+  return view('checkout'); 
+});
+
+Route::get('/wishlist', function(){
+  return view('wishlist'); 
+});
+
+Route::get('/contact', function(){
+  return view('contact'); 
+});
+
+Route::get('/blog', function(){
+  return view('blog'); 
+});
+
+Route::get('/blog-details', function(){
+  return view('blog-details'); 
+});
+
+
+Route::get('/product-details', function(){
+   return view('product-details');
 });
 
 Auth::routes(['verify' => true]);
@@ -49,5 +85,16 @@ Route::get('/category/edit/{id}', [CategoryController::class, 'edit']);
 Route::post('/category/edit/{id}', [CategoryController::class, 'update']);
 
 Route::get('/category/delete/{id}', [CategoryController::class, 'destroy']);
+
+//Product
+Route::get('/product/all', [ProductController::class, 'index']);
+
+Route::get('/product', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'insert'])->name('product.insert');
+
+Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
+Route::post('/product/edit/{id}', [ProductController::class, 'update']);
+
+Route::get('/product/delete/{id}', [ProductController::class, 'delete']);
 
 

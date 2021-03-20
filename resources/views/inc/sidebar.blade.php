@@ -52,8 +52,8 @@
                                     <span key="t-ecommerce">Product</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="" key="t-products">Add New Products</a></li>
-                                    <li><a href="" key="t-product-detail">View All Products</a></li>
+                                    <li><a href="{{ url('/product')  }}" key="t-products">Add New Products</a></li>
+                                    <li><a href="{{ url('/product/all') }}" key="t-product-detail">View All Products</a></li>
                                     <li><a href="ecommerce-orders.html" key="t-orders">Orders</a></li>
                                     <li><a href="ecommerce-customers.html" key="t-customers">Customers</a></li>
                                     <li><a href="ecommerce-cart.html" key="t-cart">Cart</a></li>
