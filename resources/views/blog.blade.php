@@ -14,10 +14,11 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($blogs as $blog)
                 <div class="col-lg-4  col-md-6 col-12">
                     <div class="blog-wrap">
                         <div class="blog-image">
-                            <img src="assets/images/blog/1.jpg" alt="">
+                            <img src="{{ asset('uploads/blog/'.$blog->image) }}" alt="">
                             <ul>
                                 <li>20</li>
                                 <li>Janu</li>
@@ -27,119 +28,19 @@
                             <div class="blog-meta">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 25/06/2019</a></li>
+                                    <li class="pull-right">
+                                        <i class="fa fa-clock-o"></i> {{ $blog->created_at }}
+                                    </li>
                                 </ul>
                             </div>
-                            <h3><a href="blog-details.html">British military courts use aginst protesters busines cultural...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
+                            <h3><a href="{{ url('/blog-page/'.$blog->id ) }}">{{ $blog->title }}</a></h3>
+                            <p>{{ substr($blog->details,0, 250) }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/2.jpg" alt="">
-                            <ul>
-                                <li>20</li>
-                                <li>Janu</li>
-                            </ul>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 14/06/2019</a></li>
-                                </ul>
-                            </div>
-                            <h3><a href="blog-gallary.html">South korea’s moon jae in sworn vowing to address north...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/3.jpg" alt="">
-                            <ul>
-                                <li>25</li>
-                                <li>Jun</li>
-                            </ul>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 25/06/2019</a></li>
-                                </ul>
-                            </div>
-                            <h3><a href="blog-details.html">Man looking at his note remember to daily tasks...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/8.jpg" alt="">
-                            <ul>
-                                <li>15</li>
-                                <li>April</li>
-                            </ul>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 25/06/2019</a></li>
-                                </ul>
-                            </div>
-                            <h3><a href="blog-video.html">Robots helped inspire and deep learning might become...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/9.jpg" alt="">
-                            <ul>
-                                <li>25</li>
-                                <li>May</li>
-                            </ul>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 25/06/2019</a></li>
-                                </ul>
-                            </div>
-                            <h3><a href="blog-details.html">Defying the traditional and mainstream parties...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/12.jpg" alt="">
-                            <ul>
-                                <li>01</li>
-                                <li>Feb</li>
-                            </ul>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-                                    <li class="pull-right"><a href="#"><i class="fa fa-clock-o"></i> 25/06/2019</a></li>
-                                </ul>
-                            </div>
-                            <h3><a href="blog-audio.html">Packing macron anddis insted about vote against chat...</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nulla veniam autem veritatis, adipisci officia? Tempora necessitatibus, iusto minima maxime ipsum quae dolore repellat quaerat.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach                
+
+
                 <div class="col-12">
                     <div class="pagination-wrapper text-center mb-30">
                         <ul class="page-numbers">

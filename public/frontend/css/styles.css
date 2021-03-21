@@ -1021,6 +1021,7 @@ header-area start
 .featured-img:hover:after {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
+    border: 1px solid black;
 }
 
 .featured-content {
@@ -1029,6 +1030,7 @@ header-area start
     top: 40%;
     transform: translateX(-50%);
     z-index: 99;
+    width: fit-content;
 }
 
 .featured-content a {

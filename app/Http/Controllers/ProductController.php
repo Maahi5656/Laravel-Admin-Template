@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 
-use Image;
+use Image; 
 
 class ProductController extends Controller
 {

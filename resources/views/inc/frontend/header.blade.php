@@ -111,8 +111,7 @@
                                 <li>
                                     <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">
-                                        <li><a href="{{ url('/blog') }}">blog Page</a></li>
-                                        <li><a href="{{ url('blog-details') }}">blog Details</a></li>
+                                        <li><a href="{{ url('/blog-page') }}">blog Page</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ url('/contact') }}">Contact</a></li>

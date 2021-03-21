@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogController;
 
 use App\Http\Controllers\FontPageController;
 
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Blog;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,13 +24,19 @@ use App\Models\Product;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [FontPageController::class, 'index']);
 
 Route::get('/about', [FontPageController::class, 'about']) ;
 
 Route::get('/shop', [FontPageController::class, 'shop']);
+Route::get('/shop/{id}', [FontPageController::class, 'shopByCategory']);
+
+Route::get('/blog-page',[FontPageController::class, 'blog']);
+Route::get('/blog-page/{id}', [FontPageController::class, 'blog_details']);
+
+Route::get('/blog/all', [BlogController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'create']);
+Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
 Route::get('/cart', function(){
    return view('cart');
@@ -46,18 +54,16 @@ Route::get('/contact', function(){
   return view('contact'); 
 });
 
-Route::get('/blog', function(){
-  return view('blog'); 
-});
 
-Route::get('/blog-details', function(){
-  return view('blog-details'); 
-});
-
+// Route::get('/blog-details', function(){
+//   return view('blog-details'); 
+// });
 
 Route::get('/product-details', function(){
-   return view('product-details');
+  return view('product-details');
 });
+
+Route::get('/product-details/{id}', [FontPageController::class, 'details']);
 
 Auth::routes(['verify' => true]);
   

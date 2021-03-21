@@ -6,90 +6,54 @@
 
 @section('content')
 
-   <!-- single-product-area start-->
-    <div class="single-product-area ptb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="product-single-img">
-                        <div class="product-active owl-carousel">
+        <div class="single-product-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="product-single-img">
                             <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/1.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/2.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/3.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/4.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/5.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/6.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product-thumbnil-active  owl-carousel">
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/1.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/2.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/3.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/4.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/5.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('frontend') }}/images/product/product-details/6.jpg" alt="">
+                                <img src="{{ asset('uploads/product/'.$details->picture) }}" alt="" style="width: 100%;">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="product-single-content">
-                        <h3>Nature Honey</h3>
-                        <div class="rating-wrap fix">
-                            <span class="pull-left">$219.56</span>
-                            <ul class="rating pull-right">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li>(05 Customar Review)</li>
+                    <div class="col-lg-6">
+                        <div class="product-single-content">
+                            <h3>{{  $details->name }}</h3>
+                            <div class="rating-wrap fix">
+                                <span class="pull-left">{{ $details->price }}</span>
+                                <ul class="rating pull-right">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li>(05 Customar Review)</li>
+                                </ul>
+                            </div>
+                            <p>{{ $details->description }}</p>
+                            <ul class="input-style">
+                                <li class="quantity cart-plus-minus">
+                                    <input type="text" value="1" />
+                                </li>
+                                <li><a href="cart.html">Add to Cart</a></li>
+                            </ul>
+                            <ul class="cetagory">
+                                <li>Categories:</li>
+                                <li><a href="#">Honey</a></li>
+                            </ul>
+                            <ul class="socil-icon">
+                                <li>Share :</li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
-                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs</p>
-                        <ul class="input-style">
-                            <li class="quantity cart-plus-minus">
-                                <input type="text" value="1" />
-                            </li>
-                            <li><a href="cart.html">Add to Cart</a></li>
-                        </ul>
-                        <ul class="cetagory">
-                            <li>Categories:</li>
-                            <li><a href="#">Honey</a></li>
-                        </ul>
-                        <ul class="socil-icon">
-                            <li>Share :</li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
+                    </div>                    
                 </div>
             </div>
+            <div class="container">
             <div class="row mt-60">
                 <div class="col-12">
                     <div class="single-product-menu">
@@ -275,7 +239,9 @@
                         </div>
                     </div>
                 </div>
+            </div>                
             </div>
+
         </div>
     </div>
     <!-- single-product-area end-->
@@ -290,16 +256,17 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($relatedProduct as $related)
                 <div class="col-lg-3 col-sm-6 col-12">
                     <div class="featured-product-wrap">
                         <div class="featured-product-img">
-                            <img src="{{ asset('frontend') }}/images/product/1.jpg" alt="">
+                            <img src="{{ asset('uploads/product/'.$related->picture) }}" alt="">
                         </div>
                         <div class="featured-product-content">
                             <div class="row">
                                 <div class="col-7">
-                                    <h3><a href="shop.html">Nature Honey</a></h3>
-                                    <p>$219.56</p>
+                                    <h3><a href="shop.html">{{ $related->name}}</a></h3>
+                                    <p>{{ $related->price }}</p>
                                 </div>
                                 <div class="col-5 text-right">
                                     <ul>
@@ -311,69 +278,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="featured-product-wrap">
-                        <div class="featured-product-img">
-                            <img src="{{ asset('frontend') }}/images/product/2.jpg" alt="">
-                        </div>
-                        <div class="featured-product-content">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3><a href="shop.html">Olive Oil</a></h3>
-                                    <p>$354.75</p>
-                                </div>
-                                <div class="col-5 text-right">
-                                    <ul>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="featured-product-wrap">
-                        <div class="featured-product-img">
-                            <img src="{{ asset('frontend/images/product/3.jpg') }}" alt="">
-                        </div>
-                        <div class="featured-product-content">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3><a href="shop.html">Sunrise Oil</a></h3>
-                                    <p>$214.80</p>
-                                </div>
-                                <div class="col-5 text-right">
-                                    <ul>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="featured-product-wrap">
-                        <div class="featured-product-img">
-                            <img src="{{ asset('frontend/images/product/4.jpg') }}" alt="">
-                        </div>
-                        <div class="featured-product-content">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3><a href="shop.html">Coconut Oil</a></h3>
-                                    <p>$241.00</p>
-                                </div>
-                                <div class="col-5 text-right">
-                                    <ul>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@
 								</tr>
 							</thead>
 							<tbody>
+
 							@foreach($products as $product)
 		    					<tr>
 									<td scope="row">{{ $product->id }}</td>

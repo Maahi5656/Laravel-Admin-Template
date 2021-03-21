@@ -1,7 +1,6 @@
 @extends('layouts.dashboard_page')
 
 @section('content')
-    <div class="row">
         <div class="card">
             <div class="card-body">
                 <form method="post" action="{{ route('category.store') }}" class="w-75 p-4" enctype="multipart/form-data">
@@ -36,5 +35,4 @@
                 </form>                                         
            </div>
         </div>               
-    </div>	
 @endsection    

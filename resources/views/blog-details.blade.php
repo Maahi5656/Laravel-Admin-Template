@@ -10,18 +10,13 @@
             <div class="row">
                 <div class="col-lg-9 col-12">
                     <div class="blog-details-wrap">
-                        <img src="assets/images/blog/blog-details.jpg" alt="">
-                        <h3>We Can Ensure Your Comfortable Life</h3>
+                        <img src="{{asset('uploads/blog/'.$blogs->image)}}" class="w-100" alt="">
+                        <h3>{{ $blogs->title  }}</h3>
                         <ul class="meta">
                             <li>19 JAN 2019</li>
                             <li>By Dr. John Darcy</li>
                         </ul>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
-                        <p>typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
-                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>{{ $blogs->details  }}</p>
                         <div class="share-wrap">
                             <div class="row">
                                 <div class="col-sm-7 ">

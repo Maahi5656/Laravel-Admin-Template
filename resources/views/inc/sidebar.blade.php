@@ -14,12 +14,6 @@
                                     <i class="bx bx-home-circle"></i><span class="badge badge-pill badge-info float-right">04</span>
                                     <span key="t-dashboards">Dashboards</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="index.html" key="t-default">Default</a></li>
-                                    <li><a href="dashboard-saas.html" key="t-saas">Saas</a></li>
-                                    <li><a href="dashboard-crypto.html" key="t-crypto">Crypto</a></li>
-                                    <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
-                                </ul>
                             </li>
 
                             <li class="menu-title" key="t-apps">Apps</li>
@@ -61,6 +55,17 @@
                                     <li><a href="ecommerce-shops.html" key="t-shops">Shops</a></li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="fas fa-box"></i>
+                                    <span key="t-ecommerce">Blog</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('/blog')  }}" key="t-products">Add New Blog</a></li>
+                                    <li><a href="{{ url('/blog/all') }}" key="t-product-detail">View All Blogs</a></li>
+                                </ul>
+                            </li>                            
 
 
 
