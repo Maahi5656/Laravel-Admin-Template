@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\Comment;
 
 use Image;
 
@@ -67,8 +68,37 @@ class FontPageController extends Controller
 
     public function blog_details($id){
 
-    	$blogs = Blog::find($id);
-    	return view('blog-details', compact('blogs'));
+    	return view('blog-details', [
+    		'blogs' => Blog::find($id),
+            'comments' => Comment::where('blog_id',$id)->get(),
+
+        ]);
+    }
+
+    public function post_comment(Request $request){
+       
+        $request->validate([           
+           'name' => 'required|string',
+           'email' => 'required',
+           'comment' => 'required',
+        ]);
+
+        $comments = new Comment;
+        $comments->name = $request->name;
+        $comments->email = $request->email;
+        $comments->details = $request->comment;
+        $comments->blog_id = $request->blogID;
+
+        $comments->save(); 
+        
+        return redirect()->back()->with('msg','Message Successfully Sent');
+    }
+
+    public function all_comment(){
+
+    	return view('comments.index',[
+          'comments' => Comment::all(),
+    	]);
     }
 
 

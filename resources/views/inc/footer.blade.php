@@ -48,7 +48,7 @@
 
 
         <script src="{{ asset('backend') }}/js/app.js"></script>
-
+        @yield('script')
     </body>
 
 <!-- Mirrored from themesbrand.com/skote/layouts/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 15:41:20 GMT -->

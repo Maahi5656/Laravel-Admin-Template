@@ -22,6 +22,17 @@ class CategoryController extends Controller
 
     }
 
+    public function index2() {
+        return  view('category.index2');
+    }
+
+
+    public function jsonCategory() {
+        $category = Category::all();
+
+        return response()->json($category);        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

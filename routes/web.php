@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\Comment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +35,15 @@ Route::get('/shop/{id}', [FontPageController::class, 'shopByCategory']);
 Route::get('/blog-page',[FontPageController::class, 'blog']);
 Route::get('/blog-page/{id}', [FontPageController::class, 'blog_details']);
 
+Route::get('/comment/all',[FontPageController::class, 'all_comment']);
+Route::post('/comment', [FontPageController::class, 'post_comment']);
+
 Route::get('/blog/all', [BlogController::class, 'index']);
 Route::get('/blog', [BlogController::class, 'create']);
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
+
+
+
 
 Route::get('/cart', function(){
    return view('cart');
@@ -83,6 +90,8 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'destroy']);
 
 //Category
 Route::get('/category/all', [CategoryController::class, 'index']);
+Route::get('/category/all/json', [CategoryController::class, 'index2']);
+Route::get('/category/json', [CategoryController::class, 'jsonCategory']);
 
 Route::get('/category', [CategoryController::class, 'create']);
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');

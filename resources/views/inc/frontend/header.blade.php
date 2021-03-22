@@ -46,7 +46,11 @@
                     <div class="search-form">
                         <form action="#">
                             <input type="text" placeholder="Search Here...">
-                            <button><i class="fa fa-search"></i></button>
+                            <button>
+                                <a href="#">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </button>
                         </form>
                     </div>
                 </div>

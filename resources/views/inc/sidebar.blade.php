@@ -37,6 +37,7 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ url('/category') }}" key="t-wallet">Add New Category</a></li>
                                     <li><a href="{{ url('/category/all') }}" key="t-buy">View All Category</a></li>
+                                    <li><a href="{{ url('/category/all/json') }}" key="t-buy">json category</a></li>
                                 </ul>
                             </li>                            
 
@@ -65,7 +66,19 @@
                                     <li><a href="{{ url('/blog')  }}" key="t-products">Add New Blog</a></li>
                                     <li><a href="{{ url('/blog/all') }}" key="t-product-detail">View All Blogs</a></li>
                                 </ul>
-                            </li>                            
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="fas fa-box"></i>
+                                    <span key="t-ecommerce">Comment</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li>
+                                        <a href="{{ url('/comment/all') }}" key="t-product-detail">View All Comments</a>
+                                    </li>
+                                </ul>
+                            </li>                                                        
 
 
 

@@ -234,10 +234,17 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item text-danger" href="#">
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                     <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> 
                                     <span key="t-logout">Logout</span>
                                 </a>
+
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                             </div>
                         </div>
 
