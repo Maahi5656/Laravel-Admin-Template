@@ -1952,7 +1952,6 @@ margin-left: 15px;
 }
 
 
-
 /*===========================
     shop sidebar style here
 ===========================*/
@@ -3425,3 +3424,7 @@ ol {
     padding-bottom: 0;
 }
 /*mobal-subscribe*/
+
+.product-area .input-form{
+    margin: 0 10%;
+}

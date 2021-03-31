@@ -22,36 +22,34 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php 
+                                    $subtotal = 0;
+                                    $shipping = 100;
+                                    $total = $subtotal + $shipping;
+                                @endphp
+                                @foreach($carts as $cart)
+                                    @php
+                                        $product = App\Models\Product::findOrFail($cart['product_id']);
+                                    @endphp
                                 <tr>
-                                    <td class="images"><img src="{{ asset('frontend') }}/images/cart/1.jpg" alt=""></td>
-                                    <td class="product"><a href="single-product.html">Neture Honey</a></td>
-                                    <td class="ptice">$139.00</td>
-                                    <td class="quantity cart-plus-minus">
-                                        <input type="text" value="1" />
+                                    <td class="images">
+                                        <img src="{{ asset('uploads/product/'.$product->picture) }}" alt="">
                                     </td>
-                                    <td class="total">$139.00</td>
-                                    <td class="remove"><i class="fa fa-times"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="images"><img src="{{ asset('frontend') }}/images/cart/2.jpg" alt=""></td>
-                                    <td class="product"><a href="single-product.html">Pure Olive Oil</a></td>
-                                    <td class="ptice">$684.47</td>
+                                    <td class="product"><a href="single-product.html">{{ $product->name }}</a></td>
+                                    <td class="price">$ {{ $product->price }}</td>
                                     <td class="quantity cart-plus-minus">
-                                        <input type="text" value="1" />
+                                        <input type="text" value="{{ $cart['qty'] }}" />
                                     </td>
-                                    <td class="total">$684.47</td>
-                                    <td class="remove"><i class="fa fa-times"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="images"><img src="{{ asset('frontend') }}/images/cart/3.jpg" alt=""></td>
-                                    <td class="product"><a href="single-product.html">Pure Coconut Oil</a></td>
-                                    <td class="ptice">$145.80</td>
-                                    <td class="quantity cart-plus-minus">
-                                        <input type="text" value="1" />
+                                    <td class="total">$ {{ $cart['total'] }}</td>
+                                    <td class="remove">
+                                        <a href="{{ route('cart.destroy',$cart['product_id']) }}"><i class="fa fa-times"></i></a>
                                     </td>
-                                    <td class="total">$145.80</td>
-                                    <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
+                                    @php
+                                        $subtotal += $cart['total']; 
+                                        $total = $subtotal + $shipping;
+                                    @endphp
+                                @endforeach
                             </tbody>
                         </table>
                         <div class="row mt-60">
@@ -73,12 +71,14 @@
                             </div>
                             <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
                                 <div class="cart-total text-right">
+
                                     <h3>Cart Totals</h3>
                                     <ul>
-                                        <li><span class="pull-left">Subtotal </span>$380.00</li>
-                                        <li><span class="pull-left"> Total </span> $380.00</li>
+                                        <li><span class="pull-left">Subtotal </span>$ {{ $subtotal }} </li>
+                                        <li><span class="pull-left">Shippping </span>$ {{ $shipping }} </li>
+                                        <li><span class="pull-left"> Total </span> $ {{ $total }}</li>
                                     </ul>
-                                    <a href="checkout.html">Proceed to Checkout</a>
+                                    <a href="{{ url('checkout') }}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>

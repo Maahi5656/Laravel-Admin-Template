@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Blog;
 use App\Models\Comment;
 
+use DB;
+
 use Image;
 
 class FontPageController extends Controller
@@ -47,7 +49,7 @@ class FontPageController extends Controller
             'products' => Product::where('category_id',$categoryProducts->id)->get(), 
         	'categories' => $categoryProducts,
         ]);
-    }
+    } 
 
     public function details($id){
 
@@ -99,6 +101,61 @@ class FontPageController extends Controller
     	return view('comments.index',[
           'comments' => Comment::all(),
     	]);
+    }
+
+
+    public function search(Request $request){
+
+    	if($request->ajax()){
+
+            //$categoryId = Category::find($id);
+            $output = "";
+    		$products = DB::table('products')->where('name','like','%'.$request->productSearch.'%')
+    		                      			 ->orWhere('price','like','%'.$request->productSearch.'%')->get();
+
+			// return view('shop-page', ['products'=>$data]);
+
+    		if($products){
+                // $image = 
+    			foreach($products as $product){
+    				$output .=                                
+    				'<li class="col-xl-3 col-lg-4 col-sm-6 col-12 border border-secondary pt-3 m-2">'.
+                        '<div class="product-wrap">'.
+                            '<div class="product-img">'.
+                                '<span>Sale</span>'.
+                                '<img src="uploads/product/$product->picture"; alt="">'.
+                                '<div class="product-icon flex-style">'.
+                                    '<ul>'.
+                                        '<li>'.
+                                        	'<a href=""/product-details/".$product->id">'.
+                                        		'<i class="fa fa-eye"></i></a></li>'.
+                                                    '<li>'.
+                                                    '<a href="wishlist.html"><i class="fa fa-heart">'.
+                                                    '</li>'.
+                                                '</i>'.
+                                        	'</a>'.
+                                    	'</li>'.
+                                        '<li>'.
+                                        	'<a href="cart.html"><i class="fa fa-shopping-bag"></i></a>'.
+                                        '</li>'.
+                                    '</ul>'.
+                                '</div>'.
+                            '</div>'.
+                        	'<div class="product-content">'.
+                            	'<h3><a href="single-product.html">'.$product->name.'</a></h3>'.
+                                    '<p class="pull-left">'.$product->price.'</p>'.
+                        	'</div>'.
+                    	'</div>'.
+                    '</li> ';
+    			}
+
+    			return Response($output);
+    		}
+
+
+    	}
+
+
     }
 
 

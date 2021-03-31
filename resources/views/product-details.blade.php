@@ -31,12 +31,22 @@
                                 </ul>
                             </div>
                             <p>{{ $details->description }}</p>
-                            <ul class="input-style">
-                                <li class="quantity cart-plus-minus">
-                                    <input type="text" value="1" />
-                                </li>
-                                <li><a href="cart.html">Add to Cart</a></li>
-                            </ul>
+                            
+                            <form action="{{ route('add.to.cart') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $details->id }}">
+                                <ul class="input-style">
+                                    <li class="quantity cart-plus-minus">
+                                        <input type="text" name="qty" value="1" />
+                                    </li>
+                                    <li><button type="submit">Add to Cart</button></li>
+                                </ul>
+                            </form>
+
+                           
+
+
+
                             <ul class="cetagory">
                                 <li>Categories:</li>
                                 <li><a href="#">Honey</a></li>

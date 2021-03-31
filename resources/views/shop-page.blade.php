@@ -11,10 +11,21 @@
     <!-- product-area start -->
     <div class="product-area pt-100">
         <div class="container">
-            <div class="tab-content"> 
-                
+            <div class="input-form">
+                <form method="get">
+                  <div class="input-group">
+                    <input type="text" name="productSearch" class="" id="productSearch" placeholder="Search">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" name="searchButton" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="tab-content">                 
                 <div class="tab-pane active" id="all">
-                    <ul class="row justify-content-center">
+                    <ul id="productContent" class="row justify-content-center">
                     	@foreach($products as $product)
                                 <li class="col-xl-3 col-lg-4 col-sm-6 col-12 border border-secondary pt-3 m-2">
                                     <div class="product-wrap">
@@ -66,3 +77,4 @@
 
 
 @endsection
+

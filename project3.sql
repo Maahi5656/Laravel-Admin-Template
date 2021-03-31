@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2021 at 01:17 PM
+-- Generation Time: Mar 31, 2021 at 02:30 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -119,9 +119,19 @@ CREATE TABLE `comments` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `blog_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `name`, `email`, `details`, `blog_id`, `created_at`, `updated_at`) VALUES
+(1, 'John Doe', 'john@yahoo.com', 'simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when', 2, '2021-03-22 01:47:54', '2021-03-22 01:47:54'),
+(2, 'Jack Ma', 'd@gmail.com', 'rjwrhwrdfof dwrp;rr                  ldm;lkd', 1, '2021-03-22 02:21:52', '2021-03-22 02:21:52'),
+(3, 'Ajwad Maahi', 'fsf@yahoo.com', 'text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when', 2, '2021-03-22 02:26:06', '2021-03-22 02:26:06');
 
 -- --------------------------------------------------------
 
@@ -163,7 +173,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2021_03_18_073758_create_categories_table', 2),
 (6, '2021_03_20_045136_create_products_table', 3),
 (7, '2021_03_21_091626_create_blogs_table', 4),
-(8, '2021_03_21_092256_create_comments_table', 4);
+(8, '2021_03_21_092256_create_comments_table', 4),
+(9, '2021_03_22_065853_create_people_table', 5);
 
 -- --------------------------------------------------------
 
@@ -324,7 +335,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -336,7 +347,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`

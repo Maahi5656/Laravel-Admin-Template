@@ -130,12 +130,26 @@
                     <div class="order-area">
                         <h3>Your Order</h3>
                         <ul class="total-cost">
-                            <li>Pure Nature Honey <span class="pull-right">$139.00</span></li>
-                            <li>Your Product Name <span class="pull-right">$100.00</span></li>
-                            <li>Pure Nature Honey <span class="pull-right">$141.00</span></li>
-                            <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li>
-                            <li>Shipping <span class="pull-right">Free</span></li>
-                            <li>Total<span class="pull-right">$380.00</span></li>
+                                @php
+                                    $subtotal = 0;
+                                    $shipping = 100;
+                                    $total = $subtotal + $shipping;
+                                @endphp
+                            @foreach($carts as $cart)
+                                @php
+                                    $products = App\Models\Product::findOrFail($cart['product_id']);
+                                @endphp
+                       
+                            <li>{{ $products->name}} <span>*{{ $cart['qty']}}</span> <span class="pull-right">$ {{ $cart['total'] }}</span></li>
+                                @php
+                                    $subtotal += $cart['total']; 
+                                    $total = $subtotal + $shipping;
+                                @endphp
+                            @endforeach
+                            <li>Subtotal <span class="pull-right"><strong>{{ $subtotal }}</strong></span></li>
+                            <li>Shipping <span class="pull-right">{{ $shipping }}</span></li>
+                            <li>Total<span class="pull-right">{{ $total }}</span></li>
+
                         </ul>
                         <ul class="payment-method">
                             <li>

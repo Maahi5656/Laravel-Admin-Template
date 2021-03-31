@@ -133,8 +133,30 @@
     <script src="{{ asset('frontend') }}/js/jquery-ui.min.js"></script>
     <!-- main js -->
     <script src="{{ asset('frontend') }}/js/scripts.js"></script>
-</body>
+    <script src="{{ asset('frontend') }}/js/main.js"></script>
 
+<script type="text/javascript">
+
+$('#productSearch').on('keyup',function(){
+    $value = $(this).val(); 
+    $.ajax({
+        url: "{{ url('search') }}",
+        type: "GET",
+        data:{'productSearch':$value},
+        success: function(data){
+            $('#productContent').html(data);
+        }
+        // error:function(error){
+        //  console.log(error);
+        // }
+    });
+});    
+
+    
+</script>
+
+</body>
+ 
 
 <!-- Mirrored from themepresss.com/tf/html/tohoney/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Mar 2020 03:33:34 GMT -->
 </html>

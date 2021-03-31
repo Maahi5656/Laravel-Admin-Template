@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 
 use App\Http\Controllers\FontPageController;
+use App\Http\Controllers\CartController;
 
 use App\Models\Category;
 use App\Models\Brand;
@@ -38,20 +39,17 @@ Route::get('/blog-page/{id}', [FontPageController::class, 'blog_details']);
 Route::get('/comment/all',[FontPageController::class, 'all_comment']);
 Route::post('/comment', [FontPageController::class, 'post_comment']);
 
+Route::get('/search',[FontPageController::class, 'search']);
+
 Route::get('/blog/all', [BlogController::class, 'index']);
 Route::get('/blog', [BlogController::class, 'create']);
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
+Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('add.to.cart');
+Route::get('/cart', [CartController::class, 'showCart']);
+Route::get('/cart/{cart_id}/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
 
-
-
-Route::get('/cart', function(){
-   return view('cart');
-});
-
-Route::get('/checkout', function(){
-  return view('checkout'); 
-});
+Route::get('/checkout', [CartController::class, 'checkout']);
 
 Route::get('/wishlist', function(){
   return view('wishlist'); 
