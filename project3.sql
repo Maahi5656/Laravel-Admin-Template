@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 02:30 PM
+-- Generation Time: Apr 01, 2021 at 02:09 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -174,7 +174,49 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2021_03_20_045136_create_products_table', 3),
 (7, '2021_03_21_091626_create_blogs_table', 4),
 (8, '2021_03_21_092256_create_comments_table', 4),
-(9, '2021_03_22_065853_create_people_table', 5);
+(9, '2021_03_22_065853_create_people_table', 5),
+(10, '2021_04_01_103541_create_orders_table', 6),
+(11, '2021_04_01_105113_create_order_products_table', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` double NOT NULL,
+  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `discount` double NOT NULL,
+  `total` double NOT NULL,
+  `subtotal` double NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_products`
+--
+
+CREATE TABLE `order_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -237,6 +279,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'customer',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -246,8 +289,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ajwad Maahi', 'ajwadmaahi56@gmail.com', NULL, '$2y$10$nVknfnorU.s7t6BsLL/kIeldFaOWYqaQZDalRUwwcOHL9KcdW1MYG', NULL, '2021-03-18 00:04:40', '2021-03-18 00:04:40');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `user_type`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Ajwad Maahi', 'ajwadmaahi56@gmail.com', NULL, '$2y$10$nVknfnorU.s7t6BsLL/kIeldFaOWYqaQZDalRUwwcOHL9KcdW1MYG', 'admin', NULL, '2021-03-18 00:04:40', '2021-03-18 00:04:40'),
+(2, 'maahi', 'a@gmail.com', NULL, '$2y$10$nVknfnorU.s7t6BsLL/kIeldFaOWYqaQZDalRUwwcOHL9KcdW1MYG', 'customer', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -288,6 +332,18 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_products`
+--
+ALTER TABLE `order_products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -347,7 +403,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_products`
+--
+ALTER TABLE `order_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -359,7 +427,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -12,54 +12,26 @@
                 <div class="col-lg-8">
                     <div class="checkout-form form-style">
                         <h3>Billing Details</h3>
-                        <form action="http://themepresss.com/tf/html/tohoney/checkout">
+                        <form action="">
                             <div class="row">
-                                <div class="col-sm-6 col-12">
-                                    <p>First Name *</p>
+                                <div class="col-sm-12">
+                                    <p>Full Name *</p>
                                     <input type="text">
                                 </div>
-                                <div class="col-sm-6 col-12">
-                                    <p>Last Name *</p>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Compani Name</p>
-                                    <input type="text">
-                                </div>
-                                <div class="col-sm-6 col-12">
-                                    <p>Email Address *</p>
-                                    <input type="email">
-                                </div>
-                                <div class="col-sm-6 col-12">
+                                <div class="col-sm-12">
                                     <p>Phone No. *</p>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Country *</p>
                                     <input type="text">
                                 </div>
                                 <div class="col-12">
                                     <p>Your Address *</p>
                                     <input type="text">
                                 </div>
-                                <div class="col-sm-6 col-12">
-                                    <p>Postcode/ZIP</p>
-                                    <input type="email">
-                                </div>
-                                <div class="col-sm-6 col-12">
+                                <div class="col-sm-12">
                                     <p>Town/City *</p>
                                     <input type="text">
                                 </div>
-                                <div class="col-12">
-                                    <input id="toggle1" type="checkbox">
-                                    <label for="toggle1">Pure CSS Accordion</label>
-                                    <div class="create-account">
-                                        <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                        <span>Account password</span>
-                                        <input type="password">
-                                    </div>
-                                </div>
-                                <div class="col-12">
+
+<!--                                 <div class="col-12">
                                     <input id="toggle2" type="checkbox">
                                     <label class="fontsize" for="toggle2">Ship to a different address?</label>
                                     <div class="row" id="open2">
@@ -117,59 +89,73 @@
                                             <input id="s_phone" type="text" placeholder="Phone Number" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <p>Order Notes </p>
-                                    <textarea name="massage" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="order-area">
-                        <h3>Your Order</h3>
+                        <form action="">
+                            <h3>Your Order</h3>
+                            
+                        </form>
+                        
                         <ul class="total-cost">
-                                @php
-                                    $subtotal = 0;
-                                    $shipping = 100;
-                                    $total = $subtotal + $shipping;
-                                @endphp
-                            @foreach($carts as $cart)
-                                @php
-                                    $products = App\Models\Product::findOrFail($cart['product_id']);
-                                @endphp
-                       
-                            <li>{{ $products->name}} <span>*{{ $cart['qty']}}</span> <span class="pull-right">$ {{ $cart['total'] }}</span></li>
-                                @php
-                                    $subtotal += $cart['total']; 
-                                    $total = $subtotal + $shipping;
-                                @endphp
-                            @endforeach
-                            <li>Subtotal <span class="pull-right"><strong>{{ $subtotal }}</strong></span></li>
-                            <li>Shipping <span class="pull-right">{{ $shipping }}</span></li>
-                            <li>Total<span class="pull-right">{{ $total }}</span></li>
+                            @php
+                                $subtotal = 0;
+                                $shipping = 100;
+                                $discount = ($subtotal + $shipping)*0.25;                                
+                                $total = $subtotal + $shipping - $discount;
+                                
+                                $carts = session()->get('cart');
+                            @endphp
 
+                            @isset($carts)    
+                                @foreach($carts as $cart)
+                                    @php
+                                        $products = App\Models\Product::findOrFail($cart['product_id']);
+                                    @endphp
+                       
+                                <li>{{ $products->name}} <span>*{{ $cart['qty']}}</span> <span class="pull-right">$ {{ $cart['total'] }}</span>
+                                    <input type="hidden" name="">
+                                </li>
+                                    @php
+                                        $subtotal += $cart['total']; 
+                                        $discount = $subtotal*0.25;                            
+                                        $total = $subtotal + $shipping - $discount;                          
+                                    @endphp                                                                   
+                                @endforeach
+                            @endisset    
+                            <li>Subtotal <span class="pull-right">
+                                <strong>
+                                {{ $subtotal }}
+                                <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+                            </strong></span>
+                            </li>
+                            <li>Shipping <span class="pull-right">{{ $shipping }}</span>
+                              <input type="hidden" name="shipping" value="{{ $shipping }}">
+                            </li>
+                            <li>Discount <span class="pull-right">{{ $discount }}</span>
+                                <input type="hidden" name="discount" value="{{ $discount }}">
+                            </li>
+                            <li>Total<span class="pull-right">{{ $total }}
+                                <input type="hidden" name="total" value="{{ $total }}">
+                            </span>
+
+                            </li>
                         </ul>
                         <ul class="payment-method">
                             <li>
-                                <input id="bank" type="checkbox">
-                                <label for="bank">Direct Bank Transfer</label>
-                            </li>
-                            <li>
-                                <input id="paypal" type="checkbox">
-                                <label for="paypal">Paypal</label>
-                            </li>
-                            <li>
-                                <input id="card" type="checkbox">
+                                <input id="card" type="checkbox" value="credit card">
                                 <label for="card">Credit Card</label>
                             </li>
                             <li>
-                                <input id="delivery" type="checkbox">
+                                <input id="delivery" type="checkbox" value="cash">
                                 <label for="delivery">Cash on Delivery</label>
                             </li>
                         </ul>
-                        <button>Place Order</button>
+                        <button type="submit">Place Order</button>
                     </div>
                 </div>
             </div>

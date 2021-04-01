@@ -10,12 +10,15 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FontPageController;
 use App\Http\Controllers\CartController;
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Middleware\AdminMiddleware;
+
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Blog;
 use App\Models\Comment;
-/*
+/* 
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -51,6 +54,12 @@ Route::get('/cart/{cart_id}/destroy', [CartController::class, 'destroy'])->name(
 
 Route::get('/checkout', [CartController::class, 'checkout']);
 
+Route::get('/register-page', [FontPageController::class, 'register']);
+Route::get('/login-page',[FontPageController::class, 'login']);
+
+
+Route::post('/add-user', [CustomerController::class, 'insert' ]);
+
 Route::get('/wishlist', function(){
   return view('wishlist'); 
 });
@@ -72,7 +81,7 @@ Route::get('/product-details/{id}', [FontPageController::class, 'details']);
 
 Auth::routes(['verify' => true]);
   
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('admin');
 
 
 //Brand
@@ -111,3 +120,5 @@ Route::post('/product/edit/{id}', [ProductController::class, 'update']);
 Route::get('/product/delete/{id}', [ProductController::class, 'delete']);
 
 
+//Customer Dashboard
+Route::get('/customer/dashboard', [CustomerController::class, 'index'])->middleware('customer');

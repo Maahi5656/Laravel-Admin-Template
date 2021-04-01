@@ -81,7 +81,7 @@
                                     <li><a href="wishlist.html">wishlist</a></li>
                                 </ul>
                             </li>
-                            <li><a href="register.html"> Login/Register </a></li>
+                            <li><a href="{{ url('login-page') }}"> Login</a>/<a href="{{ url('register-page') }}">Register </a></li>
                         </ul>
                     </div>
                 </div>
@@ -161,27 +161,32 @@
                                 <ul class="cart-wrap dropdown_style">
                                     @php
                                         $subtotal = 0;
+                                        $carts = session()->get('cart');
                                     @endphp 
-                                    @foreach(session()->get('cart') as $cart)
-                                        @php 
-                                            $product = \App\Models\Product::findOrFail($cart['product_id']);
-                                        @endphp
-                                        <li class="cart-items">
-                                            <div class="cart-img">
-                                                <img src="{{ asset('uploads/product/'.$product->picture) }}" alt="">
-                                            </div>
-                                            <div class="cart-content">
-                                                <a href="cart.html">{{$product->name}}</a>
-                                                <span>QTY : {{ $cart['qty'] }}</span>
-                                                <p>${{$cart['total']}}</p>
-                                                <i class="fa fa-times"></i>
-                                            </div>
-                                        </li>
-                                        @php
-                                            $subtotal += $cart['total'];
-                                        @endphp
-                                    @endforeach
 
+                                    @isset($carts)
+                                        @foreach($carts as $cart)
+                                            @php 
+                                                $product = \App\Models\Product::findOrFail($cart['product_id']);
+                                            @endphp
+                                            <li class="cart-items">
+                                                <div class="cart-img">
+                                                    <img src="{{ asset('uploads/product/'.$product->picture) }}" alt="">
+                                                </div>
+                                                <div class="cart-content">
+                                                    <a href="cart.html">{{$product->name}}</a>
+                                                    <span>QTY : {{ $cart['qty'] }}</span>
+                                                    <p>${{$cart['total']}}</p>
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </li>
+                                            @php
+                                                $subtotal += $cart['total'];
+                                            @endphp
+                                        @endforeach
+                                    @endisset
+
+                                    
                                     <li>Subtotol: <span class="pull-right">${{$subtotal}}</span></li>
                                     <li>
                                         <button><a href="{{ url('/cart') }}" style="color: black;">Show Out</a></button>

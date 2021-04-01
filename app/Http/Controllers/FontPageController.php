@@ -11,7 +11,7 @@ use App\Models\Blog;
 use App\Models\Comment;
 
 use DB;
-
+ 
 use Image;
 
 class FontPageController extends Controller
@@ -19,7 +19,7 @@ class FontPageController extends Controller
     //
     public function index()
     {
-       
+
        return view('index',[
        	    'categories' => Category::all(),
     		'limitedProduct' => Product::limit(4)->get(),       	
@@ -101,6 +101,14 @@ class FontPageController extends Controller
     	return view('comments.index',[
           'comments' => Comment::all(),
     	]);
+    }
+
+    public function register(){
+        return view('register');
+    }
+
+    public function login(){
+        return view('login');
     }
 
 

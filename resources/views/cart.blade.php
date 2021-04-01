@@ -26,30 +26,34 @@
                                     $subtotal = 0;
                                     $shipping = 100;
                                     $total = $subtotal + $shipping;
+                                    $carts = session()->get('cart');
                                 @endphp
-                                @foreach($carts as $cart)
-                                    @php
-                                        $product = App\Models\Product::findOrFail($cart['product_id']);
-                                    @endphp
-                                <tr>
-                                    <td class="images">
-                                        <img src="{{ asset('uploads/product/'.$product->picture) }}" alt="">
-                                    </td>
-                                    <td class="product"><a href="single-product.html">{{ $product->name }}</a></td>
-                                    <td class="price">$ {{ $product->price }}</td>
-                                    <td class="quantity cart-plus-minus">
-                                        <input type="text" value="{{ $cart['qty'] }}" />
-                                    </td>
-                                    <td class="total">$ {{ $cart['total'] }}</td>
-                                    <td class="remove">
-                                        <a href="{{ route('cart.destroy',$cart['product_id']) }}"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                    @php
-                                        $subtotal += $cart['total']; 
-                                        $total = $subtotal + $shipping;
-                                    @endphp
-                                @endforeach
+
+                                @isset($carts)
+                                    @foreach($carts as $cart)
+                                        @php
+                                            $product = App\Models\Product::findOrFail($cart['product_id']);
+                                        @endphp
+                                    <tr>
+                                        <td class="images">
+                                            <img src="{{ asset('uploads/product/'.$product->picture) }}" alt="">
+                                        </td>
+                                        <td class="product"><a href="single-product.html">{{ $product->name }}</a></td>
+                                        <td class="price">$ {{ $product->price }}</td>
+                                        <td class="quantity cart-plus-minus">
+                                            <input type="text" value="{{ $cart['qty'] }}" />
+                                        </td>
+                                        <td class="total">$ {{ $cart['total'] }}</td>
+                                        <td class="remove">
+                                            <a href="{{ route('cart.destroy',$cart['product_id']) }}"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                        @php
+                                            $subtotal += $cart['total']; 
+                                            $total = $subtotal + $shipping;
+                                            @endphp
+                                    @endforeach
+                                @endisset
                             </tbody>
                         </table>
                         <div class="row mt-60">

@@ -395,10 +395,10 @@ header-area start
 
 .account_login-area li a {
     color: #333;
-    display: block;
+    display: inline-block;
 }
 
-.account_login-area li:hover>a {
+.account_login-area li a:hover {
     color: #ef4836;
 }
 

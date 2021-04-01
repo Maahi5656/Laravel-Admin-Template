@@ -144,7 +144,7 @@
                             </ul>
                         </div>
                     </div>
-                </li> 
+                </li>
 
                 @endforeach
             </ul>
@@ -189,7 +189,7 @@
                             </ul>
                         </div>
                     </div>
-                </li> 
+                </li>
                 @endforeach
 
                 <li class="col-12 text-center">
